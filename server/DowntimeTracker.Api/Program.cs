@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using DowntimeTracker.Api.Data;
 using DowntimeTracker.Api.Services;
 using DowntimeTracker.Api.Endpoints;
+using Microsoft.AspNetCore.SignalR;
+using DowntimeTracker.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,6 +88,8 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddSignalR();
+
 // ============================================
 // Build Application
 // ============================================
@@ -129,6 +133,9 @@ app.MapAuthEndpoints();
 app.MapLookupEndpoints();
 app.MapPlannedDowntimeEndpoints();
 app.MapUnplannedDowntimeEndpoints();
+
+app.MapHub<DowntimeHub>("/hubs/downtime");
+
 // ============================================
 // Run Application
 // ============================================
