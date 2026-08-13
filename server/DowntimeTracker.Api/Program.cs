@@ -127,6 +127,7 @@ app.UseAuthorization();
 
 app.MapAuthEndpoints();
 app.MapLookupEndpoints();
+app.MapPlannedDowntimeEndpoints();
 // ============================================
 // Run Application
 // ============================================
